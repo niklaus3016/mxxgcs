@@ -1,0 +1,6 @@
+{
+  "name": "明序性格测试",
+  "description": "专业双体系性格测评工具，包含MBTI经典人格与SBTI秩序性格测评，离线可用，纯本地计算。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

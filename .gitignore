@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+sharp/
+
+# Build output
+dist/
+
+# Android build output
+android/.gradle/
+android/**/build/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
