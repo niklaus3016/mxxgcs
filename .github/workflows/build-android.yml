@@ -41,7 +41,7 @@ jobs:
 
     - name: Create keystore file from GitHub Secrets
       run: |
-        cd android
+        cd android/app
         if [ -z "${{ secrets.KEYSTORE_BASE64 }}" ]; then
           echo "Error: KEYSTORE_BASE64 secret is not set"
           exit 1
@@ -59,7 +59,7 @@ jobs:
 
     - name: Extract SHA1 from keystore
       run: |
-        cd android
+        cd android/app
         full_output=$(keytool -list -v -keystore my-release-key.keystore -alias mxxgcs -storepass "${{ secrets.KEYSTORE_PASSWORD }}")
 
         sha1_with_colons=$(echo "$full_output" | grep -i "sha1:" | head -1 | sed 's/.*sha1:\s*//i' | sed 's/\s*$//')
@@ -98,7 +98,7 @@ jobs:
         echo "=== Building Release APK ==="
         ./gradlew clean
         ./gradlew assembleRelease --no-build-cache --no-daemon \
-          -Pandroid.injected.signing.store.file=my-release-key.keystore \
+          -Pandroid.injected.signing.store.file=app/my-release-key.keystore \
           -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" \
           -Pandroid.injected.signing.key.alias=mxxgcs \
           -Pandroid.injected.signing.key.password="${{ secrets.KEYSTORE_PASSWORD }}"
