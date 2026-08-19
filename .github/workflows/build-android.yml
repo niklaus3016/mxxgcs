@@ -95,10 +95,13 @@ jobs:
     - name: Build Android Release APK
       run: |
         cd android
+        KEYSTORE_ABS_PATH="$PWD/app/my-release-key.keystore"
+        echo "Keystore absolute path: $KEYSTORE_ABS_PATH"
+        ls -la "$KEYSTORE_ABS_PATH"
         echo "=== Building Release APK ==="
         ./gradlew clean
         ./gradlew assembleRelease --no-build-cache --no-daemon \
-          -Pandroid.injected.signing.store.file=my-release-key.keystore \
+          -Pandroid.injected.signing.store.file="$KEYSTORE_ABS_PATH" \
           -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_PASSWORD }}" \
           -Pandroid.injected.signing.key.alias=mxxgcs \
           -Pandroid.injected.signing.key.password="${{ secrets.KEYSTORE_PASSWORD }}"
